@@ -38,7 +38,7 @@ The system operates on a **volume-controlled ventilation** principle. The Arduin
 <br>
 
 **Figure 3: Flow Chart**
-<img src="Images/Flow_chart.png" alt="Flow Chart" width="600"/>
+<img src="Images/Flow_Chart.png" alt="Flow Chart" width="600"/>
 
 <br>
 
