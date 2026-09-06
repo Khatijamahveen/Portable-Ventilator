@@ -1,206 +1,213 @@
 # Portable Ventilator Using Arduino
 
-A low-cost automated mechanical ventilator prototype developed using an **Arduino UNO and a high-torque servo motor** to automate the compression of a standard Bag Valve Mask (BVM/Ambu bag).
+An embedded-systems prototype for automating the compression of a BVM/Ambu bag using an Arduino UNO, servo motor, potentiometer-based control, and LCD display.
 
-> **Academic Prototype:** This project was developed as an engineering prototype for academic and embedded-systems research purposes. It is not presented as a clinically validated medical device.
+> **Project Status:** Engineering prototype
+> This repository documents the hardware concept, embedded control implementation, prototype development, and experimental project results. It is not presented as a clinically validated medical device.
 
 ---
 
 ## 📌 Overview
 
-This project focuses on the design, development, and validation of a low-cost automated mechanical ventilator prototype.
+This project presents the design and development of a portable automated ventilator prototype based on an **Arduino UNO** and a **high-torque servo motor**.
 
-The system automates the manual compression of a standard **Bag Valve Mask (BVM/Ambu bag)** using a high-torque servo motor controlled by an **Arduino UNO**.
+The system automates the mechanical compression of a BVM/Ambu bag. A potentiometer is used as a user input to control the servo operating mode, while a 16×2 LCD with I2C interface displays the selected operating condition and breathing-cycle information.
 
-The prototype integrates embedded control, mechanical actuation, user-adjustable operating parameters, display functionality, monitoring interfaces, alarm functionality, and battery-powered operation into a portable system.
+The project combines:
 
----
-
-## 🧠 Motivation & Research Context
-
-Mechanical ventilators are life-saving devices, but their complexity and cost can create challenges in resource-constrained environments.
-
-This project investigates a low-cost and accessible approach to automating Ambu-bag compression using commonly available embedded-system components.
-
-The design emphasizes:
-
-* Simple embedded control
-* Automated mechanical actuation
-* Adjustable operating parameters
-* Portable operation
-* Integration of monitoring and alarm functionality
-* Use of readily available components
-
-The project provided practical experience in translating an embedded-system concept into a functional physical prototype.
+* Embedded system programming
+* Servo motor control
+* User-input based parameter selection
+* LCD interfacing
+* Battery-powered operation
+* Hardware prototyping
 
 ---
 
 ## 🎯 Project Objectives
 
-The main objectives of this project were to:
+The main objectives of the project were:
 
-* Develop an automated mechanism for Ambu-bag compression.
-* Control the mechanism using an Arduino UNO.
-* Use a high-torque servo motor for mechanical actuation.
-* Provide adjustable respiratory-cycle parameters.
-* Integrate an LCD-based user interface.
-* Incorporate SpO₂ and heartbeat monitoring interfaces.
-* Implement an alarm system.
-* Develop a rechargeable battery-powered prototype.
-* Design, assemble, and validate the complete prototype.
+* To automate BVM/Ambu bag compression using a servo motor.
+* To implement the control system using an Arduino UNO.
+* To provide selectable operating conditions using a potentiometer.
+* To control servo angle and movement speed through embedded programming.
+* To display operating information on a 16×2 LCD.
+* To develop a portable prototype powered by a rechargeable battery.
+* To integrate the hardware and software into a working prototype.
 
 ---
 
-## 🛠️ Technologies & Components
+## 🛠️ Hardware & Software
 
-| Category              | Component / Technology                                |
-| --------------------- | ----------------------------------------------------- |
-| Microcontroller       | Arduino UNO (ATmega328P)                              |
-| Actuator              | High-Torque Servo Motor, 270° rotation                |
-| Display               | 16×2 LCD with I²C interface                           |
-| Biomedical Monitoring | SpO₂ and Heartbeat Monitoring                         |
-| Power                 | 18650 Li-ion Battery with Type-C Module               |
-| Software              | Arduino IDE                                           |
-| Programming           | Embedded C                                            |
-| Safety Features       | UV Sterilization, Crisis Alarm / Buzzer, Backup Power |
-
----
-
-## ⚙️ System Architecture & Working Principle
-
-The Arduino UNO acts as the central controller of the prototype.
-
-The servo motor mechanically compresses the Ambu bag according to the programmed control sequence. A potentiometer is used to adjust the operating parameters, while the LCD provides system information.
-
-The prototype also incorporates SpO₂ and heartbeat monitoring interfaces, together with a buzzer-based crisis alarm.
-
-The overall system combines:
-
-**User Input → Arduino Control → Servo Actuation → Ambu-Bag Compression → System Feedback**
+| Category           | Component / Technology                  |
+| ------------------ | --------------------------------------- |
+| Microcontroller    | Arduino UNO (ATmega328P)                |
+| Actuator           | High-Torque Servo Motor                 |
+| User Input         | Potentiometer                           |
+| Display            | 16×2 LCD with I2C                       |
+| Power              | 18650 Li-ion Battery with Type-C Module |
+| Programming        | Arduino IDE                             |
+| Language           | Embedded C / Arduino C++                |
+| Mechanical Element | BVM / Ambu Bag                          |
 
 ---
 
-## 📊 Results & Validation
+## ⚙️ System Architecture
 
-The developed prototype was evaluated based on its operating characteristics and functionality.
+The overall system architecture is represented in the block diagram below.
 
-### Respiratory Rate
+The Arduino UNO receives the potentiometer input, maps the input to the corresponding operating range, and controls the servo motor accordingly. The servo performs the mechanical movement required for BVM/Ambu bag compression.
 
-A controlled respiratory rate of approximately **12 breaths per minute** was achieved using the reported control sequence of:
+The LCD provides information about the selected speed, servo angle, and breathing-cycle setting.
 
-**2 seconds clockwise + 3 seconds anti-clockwise rotation**
+### Block Diagram
 
-### Breath Cycle
-
-The prototype supports adjustable breath cycles ranging from approximately:
-
-**3.5–6 seconds**
-
-### Battery Operation
-
-The prototype achieved approximately:
-
-**3.5 hours of operation**
-
-under the reported most demanding operating condition.
-
-### Portability
-
-The developed system was designed as a lightweight and portable prototype for emergency-field-oriented applications.
-
-### Integrated Features
-
-The prototype incorporates:
-
-* Automated Ambu-bag compression
-* Adjustable operating parameters
-* LCD display
-* SpO₂ monitoring interface
-* Heartbeat monitoring interface
-* Crisis alarm
-* UV sterilization
-* Battery-powered operation
+![Block Diagram](Images/Block_diagram.png)
 
 ---
 
-# 🖼️ Project Documentation
+## 🔄 Control & Working Principle
 
-## 📐 Block Diagram
+The embedded program follows this sequence:
 
-The block diagram illustrates the overall functional architecture of the automated ventilation prototype.
+1. Initialize the LCD, servo motor, and serial communication.
+2. Read the potentiometer value through the Arduino analog input.
+3. Map the input value to the servo-control range.
+4. Select the corresponding operating mode.
+5. Move the servo through the programmed angular range.
+6. Display the selected operating condition and breathing-cycle information on the LCD.
+7. Repeat the control cycle continuously.
 
-<img src="Images/Block_diagram.png" alt="Block diagram of portable ventilator" width="800"/>
-
----
-
-## 🔌 Circuit Diagram
-
-The circuit diagram shows the electrical connections between the Arduino, actuator, display, monitoring interfaces, power system, and other components.
-
-<img src="Images/Circuit_diagram.png" alt="Circuit diagram of portable ventilator" width="800"/>
+The implemented program contains multiple operating ranges based on the potentiometer input, with different servo angles and movement speeds.
 
 ---
 
-## 🔄 Flow Chart
+## 📊 Implemented Operating Conditions
 
-The flow chart represents the control sequence implemented in the embedded system.
+The current Arduino implementation contains the following programmed conditions:
 
-<img src="Images/Flow_Chart.png" alt="Flow chart of portable ventilator" width="800"/>
+| Mode | Servo Angle | Programmed Cycle |
+| ---- | ----------: | ---------------: |
+| Fast |        100° |            4 sec |
+| Fast |        110° |         4.43 sec |
+| Fast |        120° |         3.53 sec |
+| Slow |        100° |            5 sec |
+| Slow |        110° |          5.5 sec |
+| Slow |        120° |            6 sec |
 
----
-
-## 🛠️ Developed Prototype
-
-The following image shows the developed portable ventilator prototype.
-
-<img src="Images/Designed_developed_prototype.png" alt="Designed and developed portable ventilator prototype" width="700"/>
-
----
-
-# 💡 Design Considerations
-
-### Arduino UNO
-
-The Arduino UNO was selected as the central controller for coordinating the different components of the prototype.
-
-### Servo Motor
-
-A high-torque servo motor with **270° rotation** was used to provide the mechanical actuation required for Ambu-bag compression.
-
-### LCD Interface
-
-A **16×2 LCD with I²C interface** was incorporated to provide system information and user interaction.
-
-### Battery Power
-
-An **18650 Li-ion battery with a Type-C module** was incorporated to support portable operation.
-
-### Alarm System
-
-A buzzer-based crisis alarm was incorporated as part of the prototype's safety-oriented features.
+These values are implemented directly in `main.ino`.
 
 ---
 
-# 🔬 Engineering Development
+## 📈 Project Results
+
+The developed prototype demonstrated:
+
+* A programmed respiratory rate of **12 breaths per minute** under the reported operating condition.
+* Clockwise and anti-clockwise servo movement of approximately **2 seconds and 3 seconds**, respectively, for the reported condition.
+* Programmable breathing cycles in the range of approximately **3.5–6 seconds** in the implementation.
+* Battery operation of approximately **3.5 hours** under the reported most-demanding operating condition.
+* A portable prototype integrating the electronic control and mechanical actuation system.
+
+---
+
+## 🔧 Engineering Contribution
 
 The project involved the integration of:
 
-* Embedded programming
-* Microcontroller control
+* Arduino-based embedded control
+* Analog input acquisition through a potentiometer
 * Servo motor actuation
-* Mechanical Ambu-bag compression
-* User-input handling
-* LCD interfacing
-* Biomedical monitoring interfaces
-* Alarm functionality
-* Battery-powered operation
-* Hardware assembly and prototype testing
+* I2C LCD interfacing
+* Embedded programming for multiple operating conditions
+* Rechargeable battery-based power implementation
+* Mechanical integration of the servo with the BVM/Ambu bag
+* Hardware prototype development and testing
 
-This provided hands-on experience in developing a complete embedded hardware prototype from system concept through implementation and validation.
+The `main.ino` file provides the embedded control implementation used in the prototype.
 
 ---
 
-# 📁 Repository Structure
+## 🖼️ Project Documentation
+
+### Circuit Diagram
+
+![Circuit Diagram](Images/Circuit_diagram.png)
+
+The circuit diagram documents the electrical connections used in the prototype.
+
+### Flow Chart
+
+![Flow Chart](Images/Flow_Chart.png)
+
+The flow chart represents the control sequence implemented in the embedded program.
+
+### Developed Prototype
+
+![Developed Prototype](Images/Designed_developed_prototype.png)
+
+The developed prototype demonstrates the physical integration of the electronic and mechanical components.
+
+---
+
+## 🎥 Demonstration
+
+A demonstration video of the developed prototype is included in the repository:
+
+**`PortableVentilator.mp4`**
+
+---
+
+## 📄 Project Report
+
+The complete project documentation is available in:
+
+**`ProjectReport.pdf`**
+
+---
+
+## 💻 Source Code
+
+The Arduino implementation is available in:
+
+**`main.ino`**
+
+The program uses:
+
+* `Servo.h`
+* `Wire.h`
+* `LiquidCrystal_I2C.h`
+
+The code implements potentiometer-based operating-mode selection, servo control, LCD display, and serial monitoring.
+
+---
+
+## ⚠️ Limitations
+
+This repository represents an **engineering prototype** developed for embedded-system and hardware-prototyping purposes.
+
+The documented results should be interpreted as prototype-level experimental results. The project is **not presented as a clinically validated medical device**, and no clinical performance or patient-use claim is made in this repository.
+
+---
+
+## 🔬 Research Relevance
+
+This project provided practical experience in:
+
+* Embedded system design
+* Microcontroller-based control
+* Actuator interfacing
+* Sensor/input interfacing
+* Hardware–software integration
+* Real-time control logic
+* Portable embedded-system development
+
+These areas form part of my broader interest in **Embedded Systems, IoT, Real-Time Systems, Edge Intelligence, and Hardware–Software Co-Design**.
+
+---
+
+## 📂 Repository Structure
 
 ```text
 Portable-Ventilator/
@@ -219,66 +226,17 @@ Portable-Ventilator/
 
 ---
 
-# 🎥 Demonstration
-
-A demonstration video of the developed prototype is available in:
-
-**`PortableVentilator.mp4`**
-
-The complete project documentation is available in:
-
-**`ProjectReport.pdf`**
-
-The Arduino implementation is available in:
-
-**`main.ino`**
-
----
-
-# 🎓 Research & PhD Relevance
-
-This project strengthened my practical foundation in **Embedded Systems and hardware–software integration** through the development of a complete physical prototype.
-
-The project provided hands-on experience with:
-
-* Arduino-based embedded systems
-* Embedded C
-* Microcontroller programming
-* Servo motor control
-* I²C interfacing
-* User-interface development
-* Hardware integration
-* Battery-powered embedded systems
-* Prototype development
-* System testing and validation
-
-The experience contributes to my broader interest in developing **practical, intelligent, and resource-efficient embedded systems** for real-world applications.
-
----
-
-# 👩‍💻 Author
+## 👩‍💻 Author
 
 **Khatija Mahveen**
 
-**B.E. Electronics & Communication Engineering**
-**M.E. Embedded Systems**
+M.E. Embedded Systems | Electronics & Communication Engineering
 
-### Research Interests
-
-**Embedded Systems · Edge AI · IoT · Real-Time Systems · Intelligent Systems · Hardware–Software Co-Design · Communication Systems**
+Research Interests:
+**Embedded Systems • Edge AI • IoT • Real-Time Systems • Communication Systems • Hardware–Software Co-Design**
 
 ---
 
-## 📜 License
+## 📌 Project Summary
 
-This repository is shared for **academic and research portfolio purposes**.
-
-The prototype is presented as an engineering project and should not be considered a clinically validated medical device.
-
----
-
-## ⭐ Project Summary
-
-This project demonstrates the design and development of a **low-cost automated Ambu-bag compression prototype** using an Arduino UNO and high-torque servo motor.
-
-The work brings together **embedded programming, actuator control, user-interface design, monitoring interfaces, alarm functionality, battery-powered operation, and physical hardware prototyping** into a single integrated embedded-system project.
+**Portable Ventilator Using Arduino** is an embedded-system prototype demonstrating the integration of microcontroller programming, servo motor control, LCD interfacing, user-input based operation, battery power, and mechanical actuation for automated BVM/Ambu bag compression.
