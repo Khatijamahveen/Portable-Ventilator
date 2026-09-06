@@ -51,7 +51,8 @@ The system operates on a **volume-controlled ventilation** principle. The Arduin
 ```text
 Portable-Ventilator-Using-Arduino-Programming/
 │
-├── 📁 Images/       # Project images (Block diagram, Circuit, Prototype)
-├── 📁 docs/         # Full Project Report & Demo Video
-├── 📄 README.md     # Project documentation
-└── 📄 main.ino      # Arduino source code
+├── 📁 Images/                  # Project images (Block diagram, Circuit, Prototype)
+├── 📄 PortableVentilator.mp4   # Demo Video
+├── 📄 ProjectReport.pdf        # Full Project Report
+├── 📄 README.md                # Project documentation
+└── 📄 main.ino                 # Arduino source code
