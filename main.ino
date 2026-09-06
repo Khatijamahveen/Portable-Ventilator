@@ -1,132 +1,162 @@
+/*
+ * Project: Portable Ventilator Using Arduino
+ * Author: Khatija Mahveen
+ * Description: Automates a BVM/Ambu bag using a servo motor controlled by a potentiometer.
+ *              Displays breathing cycle and speed on a 16x2 LCD using I2C.
+ */
+
 #include <Servo.h>
-#include <Wire.h> 
+#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
-// Set the LCD address to 0x27 for a 16 chars and 2 line display
+
+// LCD Address for 16 chars and 2 line display
 LiquidCrystal_I2C lcd(0x27, 16, 2);
-Servo myservo; // create servo object to control a servo
-int potpin = 0; // analog pin used to connect the potentiometer
-int val; // variable to read the value from the analog pin
-float pos = 0;
+
+Servo myservo;  // Create servo object to control the motor
+
+int potpin = 0; // Analog pin for potentiometer (User Input)
+int val;        // Variable to store the analog value
+float pos = 0;  // Variable to store servo position
+
 void setup() 
 {
-lcd.begin();
- // Turn on the blacklight and print a message.
- lcd. Backlight();
- myservo.attach(9);// attaches the servo on pin 9 to the servo object
- Serial.begin(9600);
- lcd.setCursor(0,0); //sets the cursor at row 0 column 0
- lcd.print("Emergency Vent"); // prints 16x2 LCD MODULE
- lcd.setCursor(2,1); //sets the cursor at row 1 column 2
-lcd.print("B8 MINIPROJECT")
-delay(4000);
+  lcd.begin();          // Initialize the LCD
+  lcd.backlight();      // Turn on the backlight
+  
+  myservo.attach(9);    // Attach servo to pin 9
+  Serial.begin(9600);   // Initialize Serial Monitor
+
+  // Display Startup Message
+  lcd.setCursor(0, 0);
+  lcd.print("Emergency Vent");
+  lcd.setCursor(2, 1);
+  lcd.print("B8 MINIPROJECT");
+  delay(4000);
 }
+
 void loop() 
 {
- val = analogRead(potpin); // reads the value of the potentiometer (value between 0 and 
-1023)
- val = map(val, 0, 1023, 0, 180); // scale it to use it with the servo (value between 0 and 180)
- myservo.write(val); // sets the servo position according to the scaled value
- Serial.println(val);
- delay(15); // waits for the servo to get there
-if (val <=30 ) 
-{
- lcd.setCursor(0,0); //sets the cursor at row 0 column 0
- lcd.print("Spd:Fast Ang:100 "); // prints 16x2 LCD MODULE
- lcd.setCursor(0,1); //sets the cursor at row 1 column 2
-lcd.print("Breath cycle 4 sec ");
- for (pos = 0; pos <= 100; pos += 1) 
-{ // goes from 0 degrees to 180 degrees
- // in steps of 1 degree
- myservo.write(pos); // tell servo to go to position in variable 'pos'
- delay(15);
- }
- for (pos = 100; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
- myservo.write(pos); // tell servo to go to position in variable 'pos'
- delay(15);// waits 15ms for the servo to reach the position
- }
-} 
- else if (val >=31 && val<=60 ) {
- lcd.setCursor(0,0); //sets the cursor at row 0 column 0
- lcd.print("Spd:Fast Ang:110 "); // prints 16x2 LCD MODULE
- lcd.setCursor(0,1); //sets the cursor at row 1 column 2
-lcd.print("Breath cycle 4.43 sec ");
- for (pos = 0; pos <= 110; pos += 1) 
-{ // goes from 0 degrees to 180 degrees
- // in steps of 1 degree
- myservo.write(pos); // tell servo to go to position in variable 'pos'
- delay(15);
- }
- for (pos = 110; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
- myservo.write(pos); // tell servo to go to position in variable 'pos'
- delay(15);// waits 15ms for the servo to reach the position
- }
-}
-else if (val >=61 && val<=90 ) {
- lcd.setCursor(0,0); //sets the cursor at row 0 column 0
- lcd.print("Spd:Fast Ang:120 "); // prints 16x2 LCD MODULE
- lcd.setCursor(0,1); //sets the cursor at row 1 column 2
-lcd.print("Breath cycle 3.53 sec ");
- for (pos = 0; pos <= 120; pos += 1)
-{ // goes from 0 degrees to 180 degrees
- // in steps of 1 degree
- myservo.write(pos); // tell servo to go to position in variable 'pos'
- delay(15);
- }
- for (pos = 120; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
- myservo.write(pos); // tell servo to go to position in variable 'pos'
- delay(15); 
- }
-} 
-else if (val >=91 && val<=120 ) {
- lcd.setCursor(0,0); //sets the cursor at row 0 column 0
- lcd.print("Spd:Slow Ang:100 "); // prints 16x2 LCD MODULE
- lcd.setCursor(0,1); //sets the cursor at row 1 column 2
-lcd.print("Breath cycle 5 sec ");
- for (pos = 0; pos <= 100; pos += 0.6)
-{ // goes from 0 degrees to 180 degrees
- // in steps of 1 degree
- myservo.write(pos); // tell servo to go to position in variable 'pos'
- delay(15);
- }
- for (pos = 100; pos >= 0; pos -= 0.6) { // goes from 180 degrees to 0 degrees
- myservo.write(pos); // tell servo to go to position in variable 'pos'
- delay(15); 
- /// / waits 15ms for the servo to reach the position
- }
-} 
-else if (val >=121 && val<=150 ) 
-{
- lcd.setCursor(0,0); //sets the cursor at row 0 column 0
- lcd.print("Spd:Slow Ang:110 "); // prints 16x2 LCD MODULE
- lcd.setCursor(0,1); //sets the cursor at row 1 column 2
-lcd.print("Breath cycle 5.5 sec ");
- for (pos = 0; pos <= 110; pos += 0.6) { // goes from 0 degrees to 180 degrees
- // in steps of 1 degree
- myservo.write(pos); // tell servo to go to position in variable 'pos'
- delay(15);
- }
- for (pos = 110; pos >= 0; pos -= 0.6) { // goes from 180 degrees to 0 degrees
- myservo.write(pos); // tell servo to go to position in variable 'pos'
- delay(15); 
- // waits 15ms for the servo to reach the position
- }
-}
- else if (val >=151 && val<=180 ) {
- lcd.setCursor(0,0); //sets the cursor at row 0 column 0
- lcd.print("Spd:Slow Ang:120 "); // prints 16x2 LCD MODULE
- lcd.setCursor(0,1); //sets the cursor at row 1 column 2
-lcd.print("Breath cycle 6 sec ");
- for (pos = 0; pos <= 120; pos += 0.6) 
-{ // goes from 0 degrees to 180 degrees
- // in steps of 1 degree
- myservo.write(pos); // tell servo to go to position in variable 'pos'
- delay(15);
- }
- for (pos = 120; pos >= 0; pos -= 0.6) 
-{ // goes from 180 degrees to 0 degrees
- myservo.write(pos); // tell servo to go to position in variable 'pos'
- delay(15);
- // waits 15ms for the servo to reach the position
- }
-} 
+  // Read potentiometer value (0-1023) and scale it to servo angle (0-180)
+  val = analogRead(potpin);
+  val = map(val, 0, 1023, 0, 180);
+  
+  myservo.write(val);   // Set servo position based on scaled value
+  Serial.println(val);  // Print value to Serial Monitor for debugging
+  delay(15);            // Short delay for servo stabilization
+
+  // Control Modes based on User Input (Potentiometer Value)
+  if (val <= 30) 
+  {
+    // FAST SPEED - 100 degrees
+    lcd.setCursor(0, 0);
+    lcd.print("Spd:Fast Ang:100 ");
+    lcd.setCursor(0, 1);
+    lcd.print("Breath cycle 4 sec ");
+
+    for (pos = 0; pos <= 100; pos += 1) 
+    {
+      myservo.write(pos); 
+      delay(15);
+    }
+    for (pos = 100; pos >= 0; pos -= 1) 
+    {
+      myservo.write(pos); 
+      delay(15);
+    }
+  } 
+  else if (val >= 31 && val <= 60) 
+  {
+    // FAST SPEED - 110 degrees
+    lcd.setCursor(0, 0);
+    lcd.print("Spd:Fast Ang:110 ");
+    lcd.setCursor(0, 1);
+    lcd.print("Breath cycle 4.43 sec ");
+
+    for (pos = 0; pos <= 110; pos += 1) 
+    {
+      myservo.write(pos); 
+      delay(15);
+    }
+    for (pos = 110; pos >= 0; pos -= 1) 
+    {
+      myservo.write(pos); 
+      delay(15);
+    }
+  }
+  else if (val >= 61 && val <= 90) 
+  {
+    // FAST SPEED - 120 degrees
+    lcd.setCursor(0, 0);
+    lcd.print("Spd:Fast Ang:120 ");
+    lcd.setCursor(0, 1);
+    lcd.print("Breath cycle 3.53 sec ");
+
+    for (pos = 0; pos <= 120; pos += 1) 
+    {
+      myservo.write(pos); 
+      delay(15);
+    }
+    for (pos = 120; pos >= 0; pos -= 1) 
+    {
+      myservo.write(pos); 
+      delay(15);
+    }
+  }
+  else if (val >= 91 && val <= 120) 
+  {
+    // SLOW SPEED - 100 degrees
+    lcd.setCursor(0, 0);
+    lcd.print("Spd:Slow Ang:100 ");
+    lcd.setCursor(0, 1);
+    lcd.print("Breath cycle 5 sec ");
+
+    for (pos = 0; pos <= 100; pos += 0.6) 
+    {
+      myservo.write(pos); 
+      delay(15);
+    }
+    for (pos = 100; pos >= 0; pos -= 0.6) 
+    {
+      myservo.write(pos); 
+      delay(15);
+    }
+  }
+  else if (val >= 121 && val <= 150) 
+  {
+    // SLOW SPEED - 110 degrees
+    lcd.setCursor(0, 0);
+    lcd.print("Spd:Slow Ang:110 ");
+    lcd.setCursor(0, 1);
+    lcd.print("Breath cycle 5.5 sec ");
+
+    for (pos = 0; pos <= 110; pos += 0.6) 
+    {
+      myservo.write(pos); 
+      delay(15);
+    }
+    for (pos = 110; pos >= 0; pos -= 0.6) 
+    {
+      myservo.write(pos); 
+      delay(15);
+    }
+  }
+  else if (val >= 151 && val <= 180) 
+  {
+    // SLOW SPEED - 120 degrees
+    lcd.setCursor(0, 0);
+    lcd.print("Spd:Slow Ang:120 ");
+    lcd.setCursor(0, 1);
+    lcd.print("Breath cycle 6 sec ");
+
+    for (pos = 0; pos <= 120; pos += 0.6) 
+    {
+      myservo.write(pos); 
+      delay(15);
+    }
+    for (pos = 120; pos >= 0; pos -= 0.6) 
+    {
+      myservo.write(pos); 
+      delay(15);
+    }
+  } 
 }
