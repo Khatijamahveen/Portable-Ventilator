@@ -176,7 +176,7 @@ This project provided hands-on experience in:
 * Embedded Programming
 * Portable System Development
 
-The project contributes to my broader technical interests in **Embedded Systems, IoT, Real-Time Systems, Edge AI, Communication Systems, and Hardware–Software Co-Design**.
+The project contributes to my broader technical interests in **Embedded Systems, IoT, Real-Time Systems, Communication Systems, and Hardware–Software Co-Design**.
 
 ---
 
