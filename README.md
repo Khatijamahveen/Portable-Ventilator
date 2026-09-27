@@ -21,7 +21,7 @@ The project combines embedded programming, actuator control, user-input interfac
 
 The main objectives of the project were:
 
-* To develop a portable automated mechanism for BVM/Ambu bag compression.
+* To develop a portable automated mechanism for Ambu bag compression.
 * To control the mechanical actuation using an Arduino UNO.
 * To interface a high-torque servo motor with the microcontroller.
 * To use a potentiometer for user input and control.
@@ -42,7 +42,7 @@ The main objectives of the project were:
 | Power Supply            | 18650 Li-ion Battery with Type-C Module |
 | Programming Environment | Arduino IDE                             |
 | Programming             | Embedded C / Arduino                    |
-| Mechanical Element      | BVM / Ambu Bag                          |
+| Mechanical Element      | Ambu Bag                                |
 
 ---
 
