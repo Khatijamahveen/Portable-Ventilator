@@ -1,6 +1,6 @@
 # Portable Ventilator Using Arduino
 
-An embedded-systems prototype for automating the compression of a BVM/Ambu bag using an Arduino UNO and a high-torque servo motor.
+An embedded-systems prototype for automating the compression of a Ambu bag using an Arduino UNO and a high-torque servo motor.
 
 > **Project Status:** Engineering Prototype
 > This repository documents the design, embedded programming, hardware integration, prototype development, and reported project results. It is not presented as a clinically validated medical device.
