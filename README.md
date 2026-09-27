@@ -50,7 +50,7 @@ The main objectives of the project were:
 
 The overall system architecture is represented in the block diagram below.
 
-The Arduino UNO forms the main control unit. User input is provided through the potentiometer, and the programmed control logic determines the servo motor movement. The servo motor provides the mechanical actuation required for BVM/Ambu bag compression.
+The Arduino UNO forms the main control unit. User input is provided through the potentiometer, and the programmed control logic determines the servo motor movement. The servo motor provides the mechanical actuation required for Ambu bag compression.
 
 The LCD is used to display the relevant operating information during operation.
 
