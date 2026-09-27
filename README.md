@@ -213,4 +213,4 @@ Research Interests:
 
 ## 📌 Project Summary
 
-**Portable Ventilator Using Arduino** is an embedded-system prototype demonstrating the integration of microcontroller programming, servo motor control, potentiometer interfacing, LCD communication, rechargeable battery operation, and mechanical actuation for automated BVM/Ambu bag compression.
+**Portable Ventilator Using Arduino** is an embedded-system prototype demonstrating the integration of microcontroller programming, servo motor control, potentiometer interfacing, LCD communication, rechargeable battery operation, and mechanical actuation for automated Ambu bag compression.
