@@ -11,7 +11,7 @@ An embedded-systems prototype for automating the compression of a Ambu bag using
 
 This project presents the design and development of a **portable automated ventilator prototype** based on an **Arduino UNO** and a **high-torque servo motor**.
 
-The system is designed to automate the mechanical compression of a **Ambu bag**. The Arduino-based control system manages the servo motor movement, while a potentiometer is used for user input and a 16×2 LCD with I2C interface provides display information.
+The system is designed to automate the mechanical compression of a Ambu bag. The Arduino-based control system manages the servo motor movement, while a potentiometer is used for user input and a 16×2 LCD with I2C interface provides display information.
 
 The project combines embedded programming, actuator control, user-input interfacing, display interfacing, and portable power implementation into a single hardware prototype.
 
