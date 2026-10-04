@@ -41,7 +41,7 @@ The main objectives of the project were:
 | Display                 | 16×2 LCD with I2C                       |
 | Power Supply            | 18650 Li-ion Battery with Type-C Module |
 | Programming Environment | Arduino IDE                             |
-| Programming             | Embedded C / Arduino                    |
+| Programming             | Arduino                                 |
 | Mechanical Element      | Ambu Bag                                |
 
 ---
