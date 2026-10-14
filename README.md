@@ -68,7 +68,7 @@ The prototype operates through the following general sequence:
 2. The potentiometer provides an analog input to the Arduino.
 3. The input is processed by the embedded program.
 4. The servo motor is controlled according to the programmed logic.
-5. The servo movement provides the mechanical compression of the BVM/Ambu bag.
+5. The servo movement provides the mechanical compression of the Ambu bag.
 6. The LCD displays the programmed operating information.
 7. The control sequence continues during operation.
 
